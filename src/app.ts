@@ -2,6 +2,7 @@ import express from "express";
 import type { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import userRoutes from "./routes/user.routes.js";
+import productRoutes from "./routes/product.routes.js";
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 // 404 handler
 app.use((_req, res) => {
