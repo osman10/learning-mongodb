@@ -1,4 +1,4 @@
-import {Product} from '../models/new-products.model.js';
+import {NewProducts} from '../models/new-products.model.js';
 import type { Request, Response, NextFunction } from "express";
 
 export const getProducts = async (
@@ -7,7 +7,7 @@ export const getProducts = async (
   next: NextFunction
 ) => {
   try {
-    const products = await Product.find();
+    const products = await NewProducts.find();
     res.json(products);
   } catch (error) {
     next(error);
@@ -18,7 +18,7 @@ export const createProduct = async (
   res: Response
 ): Promise<void> => {
   try {
-    const product = await Product.create(req.body);
+    const product = await NewProducts.create(req.body);
     res.status(201).json(product);
   } catch (error) {
     res.status(400).json({ message: (error as Error).message });
@@ -31,7 +31,7 @@ export const getProductById = async (
   next: NextFunction
 ) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const product = await NewProducts.findById(req.params.id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -47,7 +47,7 @@ export const updateProduct = async (
   next: NextFunction
 ) => {
   try {
-    const product = await Product.findByIdAndUpdate(
+    const product = await NewProducts.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true }
@@ -67,7 +67,7 @@ export const deleteProduct = async (
   next: NextFunction
 ) => {
   try {
-    const product = await Product.findByIdAndDelete(req.params.id);
+    const product = await NewProducts.findByIdAndDelete(req.params.id);
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
