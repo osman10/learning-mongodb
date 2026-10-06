@@ -1,9 +1,35 @@
 @import "tailwindcss";
+@import "@heroui/styles"; 
+
+
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+
+
+@layer components {
+  .drawer__backdrop {
+    @apply bg-gradient-to-br from-black/50 to-black/70;
+  }
+  .drawer__dialog {
+    @apply rounded-2xl border border-white/10 shadow-2xl;
+  }
+  .drawer__header {
+    @apply text-center;
+  }
+  .drawer__close-trigger {
+    @apply rounded-full bg-white/10 hover:bg-white/20;
+  }
+}
+
+
+
+
+
+
+
 
 @theme inline {
   --color-background: var(--background);
