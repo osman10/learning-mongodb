@@ -1,18 +1,30 @@
-import {NewProducts} from '../models/new-products.model.js';
+import { NewProducts } from "../models/new-products.model.js";
 import type { Request, Response, NextFunction } from "express";
 
 export const getProducts = async (
-  _req: Request,
+  req: Request,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const products = await NewProducts.find();
+    const { minPrice, maxPrice } = req.query;
+
+    // Construct the filter object dynamically
+    const filter: Record<string, any> = {};
+
+    if (minPrice || maxPrice) {
+      filter.price = {};
+      if (minPrice) filter.price.$gte = Number(minPrice);
+      if (maxPrice) filter.price.$lte = Number(maxPrice);
+    }
+
+    const products = await NewProducts.find(filter);
     res.json(products);
   } catch (error) {
     next(error);
   }
 };
+
 export const createProduct = async (
   req: Request,
   res: Response
@@ -76,4 +88,3 @@ export const deleteProduct = async (
     next(error);
   }
 };
-
