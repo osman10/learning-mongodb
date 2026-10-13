@@ -1,3 +1,4 @@
+import Counter from "./component/Counter";
 
 const Page = () => {
 
@@ -9,11 +10,7 @@ const Page = () => {
         <div>
           <h1 className="text-2xl font-semibold mb-2">React Redux Example</h1>
           <p className="text-sm text-slate-500 mb-6">Count: 0</p>
-          <div className="flex flex-row gap-4">
-             <button className="bg-green-600 text-white font-medium py-2 px-4  w-full rounded-lg text-sm hover:bg-green-700 transition">Add</button>
-             <button className="bg-red-600 text-white font-medium py-2 px-4  w-full rounded-lg text-sm hover:bg-red-700 transition">Remove</button>
-             <button className="bg-indigo-600 text-white font-medium py-2 px-4  w-full rounded-lg text-sm hover:bg-indigo-700 transition">Reset</button>
-          </div>
+           <Counter/>
         </div>
       </div>
     </div>
